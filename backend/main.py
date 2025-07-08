@@ -8,8 +8,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import uvicorn
 
-from app.api import regime, universe, live, backtest, websocket
-from app.core.database import init_db
+from backend.app.api import regime, universe, live, backtest, websocket
+from backend.app.core.database import init_db
 
 # FastAPI 애플리케이션 생성
 app = FastAPI(
