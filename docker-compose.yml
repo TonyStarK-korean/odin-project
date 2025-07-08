@@ -1,0 +1,96 @@
+version: '3.8'
+
+services:
+  # PostgreSQL 데이터베이스
+  postgres:
+    image: postgres:15
+    container_name: odin_postgres
+    environment:
+      POSTGRES_DB: odin_db
+      POSTGRES_USER: odin_user
+      POSTGRES_PASSWORD: odin_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - odin_network
+
+  # InfluxDB 시계열 데이터베이스
+  influxdb:
+    image: influxdb:2.7
+    container_name: odin_influxdb
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: odin_admin
+      DOCKER_INFLUXDB_INIT_PASSWORD: odin_password
+      DOCKER_INFLUXDB_INIT_ORG: odin_org
+      DOCKER_INFLUXDB_INIT_BUCKET: odin_ohlcv
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: odin_token
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+    networks:
+      - odin_network
+
+  # FastAPI 백엔드
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: odin_backend
+    environment:
+      - POSTGRES_URL=postgresql://odin_user:odin_password@postgres:5432/odin_db
+      - INFLUX_URL=http://influxdb:8086
+      - INFLUX_TOKEN=odin_token
+      - INFLUX_ORG=odin_org
+      - INFLUX_BUCKET=odin_ohlcv
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - influxdb
+    volumes:
+      - ./backend:/app
+    networks:
+      - odin_network
+    restart: unless-stopped
+
+  # React 프론트엔드
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: odin_frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - odin_network
+    restart: unless-stopped
+
+  # Redis (선택사항 - 캐싱 및 세션 관리)
+  redis:
+    image: redis:7-alpine
+    container_name: odin_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - odin_network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  influxdb_data:
+  redis_data:
+
+networks:
+  odin_network:
+    driver: bridge 

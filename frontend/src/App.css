@@ -1,0 +1,336 @@
+.main-content {
+  min-height: 100vh;
+  background-color: #f0f2f5;
+}
+
+/* 전역 스타일 오버라이드 */
+.ant-layout {
+  background: #f0f2f5;
+}
+
+.ant-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ant-table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ant-btn {
+  border-radius: 6px;
+}
+
+.ant-input {
+  border-radius: 6px;
+}
+
+.ant-select {
+  border-radius: 6px;
+}
+
+/* 애니메이션 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* 로딩 상태 */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* 에러 상태 */
+.error-container {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.error-icon {
+  font-size: 48px;
+  color: #ff4d4f;
+  margin-bottom: 16px;
+}
+
+/* 성공 상태 */
+.success-container {
+  text-align: center;
+  padding: 40px;
+  color: #52c41a;
+}
+
+.success-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+/* 빈 상태 */
+.empty-container {
+  text-align: center;
+  padding: 40px;
+  color: #999;
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+/* 툴팁 스타일 */
+.ant-tooltip {
+  border-radius: 6px;
+}
+
+/* 드롭다운 메뉴 */
+.ant-dropdown-menu {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 모달 스타일 */
+.ant-modal-content {
+  border-radius: 8px;
+}
+
+.ant-modal-header {
+  border-radius: 8px 8px 0 0;
+}
+
+/* 메시지 스타일 */
+.ant-message {
+  z-index: 1010;
+}
+
+/* 알림 스타일 */
+.ant-notification {
+  z-index: 1010;
+}
+
+/* 진행률 바 */
+.ant-progress-bg {
+  border-radius: 4px;
+}
+
+/* 태그 스타일 */
+.ant-tag {
+  border-radius: 4px;
+}
+
+/* 배지 스타일 */
+.ant-badge-count {
+  border-radius: 10px;
+}
+
+/* 스핀 스타일 */
+.ant-spin-dot-item {
+  border-radius: 50%;
+}
+
+/* 페이지네이션 */
+.ant-pagination-item {
+  border-radius: 6px;
+}
+
+.ant-pagination-prev,
+.ant-pagination-next {
+  border-radius: 6px;
+}
+
+/* 스텝 스타일 */
+.ant-steps-item-icon {
+  border-radius: 50%;
+}
+
+/* 탭 스타일 */
+.ant-tabs-tab {
+  border-radius: 6px 6px 0 0;
+}
+
+/* 콜랩스 스타일 */
+.ant-collapse {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ant-collapse-item {
+  border-radius: 0;
+}
+
+/* 타임라인 스타일 */
+.ant-timeline-item-head {
+  border-radius: 50%;
+}
+
+/* 리스트 스타일 */
+.ant-list-item {
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+/* 아바타 스타일 */
+.ant-avatar {
+  border-radius: 50%;
+}
+
+/* 스위치 스타일 */
+.ant-switch {
+  border-radius: 12px;
+}
+
+.ant-switch-handle {
+  border-radius: 50%;
+}
+
+/* 슬라이더 스타일 */
+.ant-slider-rail {
+  border-radius: 4px;
+}
+
+.ant-slider-track {
+  border-radius: 4px;
+}
+
+.ant-slider-handle {
+  border-radius: 50%;
+}
+
+/* 레이트 스타일 */
+.ant-rate-star {
+  border-radius: 2px;
+}
+
+/* 업로드 스타일 */
+.ant-upload {
+  border-radius: 6px;
+}
+
+/* 트리 스타일 */
+.ant-tree-node-content-wrapper {
+  border-radius: 4px;
+}
+
+/* 캘린더 스타일 */
+.ant-picker {
+  border-radius: 6px;
+}
+
+.ant-picker-panel {
+  border-radius: 8px;
+}
+
+/* 멀티셀렉트 스타일 */
+.ant-select-multiple .ant-select-selection-item {
+  border-radius: 4px;
+}
+
+/* 트랜스퍼 스타일 */
+.ant-transfer-list {
+  border-radius: 8px;
+}
+
+/* 멀티캐스케이드 스타일 */
+.ant-cascader-picker {
+  border-radius: 6px;
+}
+
+.ant-cascader-menu {
+  border-radius: 6px;
+}
+
+/* 멀티타임라인 스타일 */
+.ant-timeline-item {
+  border-radius: 0;
+}
+
+/* 멀티스텝 스타일 */
+.ant-steps-item {
+  border-radius: 0;
+}
+
+/* 멀티탭 스타일 */
+.ant-tabs-content-holder {
+  border-radius: 0 0 8px 8px;
+}
+
+/* 멀티콜랩스 스타일 */
+.ant-collapse-content {
+  border-radius: 0 0 8px 8px;
+}
+
+/* 멀티리스트 스타일 */
+.ant-list {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* 멀티아바타 스타일 */
+.ant-avatar-group .ant-avatar {
+  border-radius: 50%;
+}
+
+/* 멀티스위치 스타일 */
+.ant-switch-group {
+  border-radius: 12px;
+}
+
+/* 멀티슬라이더 스타일 */
+.ant-slider-marks {
+  border-radius: 4px;
+}
+
+/* 멀티레이트 스타일 */
+.ant-rate-group {
+  border-radius: 2px;
+}
+
+/* 멀티업로드 스타일 */
+.ant-upload-list {
+  border-radius: 6px;
+}
+
+/* 멀티트리 스타일 */
+.ant-tree {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* 멀티캘린더 스타일 */
+.ant-picker-panel-container {
+  border-radius: 8px;
+}
+
+/* 멀티셀렉트 드롭다운 */
+.ant-select-dropdown {
+  border-radius: 8px;
+}
+
+/* 멀티트랜스퍼 드롭다운 */
+.ant-transfer-dropdown {
+  border-radius: 8px;
+}
+
+/* 멀티캐스케이드 드롭다운 */
+.ant-cascader-dropdown {
+  border-radius: 8px;
+} 
