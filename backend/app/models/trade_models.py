@@ -25,7 +25,7 @@ class TradeLog(Base):
     size = Column(Float, nullable=False)
     pnl = Column(Float, default=0.0)
     is_backtest = Column(Boolean, default=False)
-    metadata = Column(JSON, nullable=True)  # 추가 거래 정보
+    trade_metadata = Column(JSON, nullable=True)  # 추가 거래 정보
 
 class BacktestJob(Base):
     """백테스트 작업 테이블"""
@@ -63,7 +63,7 @@ class TradeLogCreate(BaseModel):
     size: float
     pnl: float = 0.0
     is_backtest: bool = False
-    metadata: Optional[Dict[str, Any]] = None
+    trade_metadata: Optional[Dict[str, Any]] = None
 
 class TradeLogResponse(BaseModel):
     log_id: int
@@ -76,7 +76,7 @@ class TradeLogResponse(BaseModel):
     size: float
     pnl: float
     is_backtest: bool
-    metadata: Optional[Dict[str, Any]] = None
+    trade_metadata: Optional[Dict[str, Any]] = None
 
     class Config:
         from_attributes = True
