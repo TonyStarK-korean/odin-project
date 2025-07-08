@@ -8,7 +8,7 @@ from typing import Dict, Any
 import pandas as pd
 from datetime import datetime
 
-from app.core.market_analysis import market_analyzer
+from backend.app.core.market_analysis import market_analyzer
 
 router = APIRouter()
 

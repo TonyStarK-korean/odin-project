@@ -10,7 +10,7 @@ import asyncio
 from datetime import datetime
 import logging
 
-from app.core.market_analysis import market_analyzer
+from backend.app.core.market_analysis import market_analyzer
 
 router = APIRouter()
 

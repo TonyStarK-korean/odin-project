@@ -8,12 +8,12 @@ from sqlalchemy.orm import Session
 from typing import Dict, Any, List
 from datetime import datetime, timedelta
 
-from app.core.database import get_db
-from app.models.trade_models import (
+from backend.app.core.database import get_db
+from backend.app.models.trade_models import (
     LiveTradingStatus, LiveTradingRequest, LiveTradingStatusResponse,
     TradeLog, TradeLogCreate, TradeLogResponse
 )
-from app.core.strategy_base import StrategyFactory
+from backend.app.core.strategy_base import StrategyFactory
 
 router = APIRouter()
 

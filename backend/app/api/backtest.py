@@ -10,12 +10,12 @@ from datetime import datetime, timedelta
 import asyncio
 import uuid
 
-from app.core.database import get_db
-from app.models.trade_models import (
+from backend.app.core.database import get_db
+from backend.app.models.trade_models import (
     BacktestJob, BacktestRequest, BacktestJobResponse
 )
-from app.core.strategy_base import StrategyFactory
-from app.core.market_analysis import market_analyzer
+from backend.app.core.strategy_base import StrategyFactory
+from backend.app.core.market_analysis import market_analyzer
 
 router = APIRouter()
 

@@ -10,7 +10,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
-from app.core.strategy_base import BollingerBandBreakoutStrategy
+from backend.app.core.strategy_base import BollingerBandBreakoutStrategy
 
 def generate_test_data():
     """테스트용 OHLCV 데이터 생성"""

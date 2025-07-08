@@ -7,7 +7,7 @@ from fastapi import APIRouter, HTTPException
 from typing import Dict, Any, List
 from datetime import datetime
 
-from app.core.market_analysis import market_analyzer
+from backend.app.core.market_analysis import market_analyzer
 
 router = APIRouter()
 

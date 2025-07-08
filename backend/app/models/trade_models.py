@@ -5,7 +5,7 @@ PostgreSQL에 저장되는 거래 로그 및 백테스트 결과 모델
 
 from sqlalchemy import Column, Integer, String, Float, Boolean, DateTime, Text, JSON
 from sqlalchemy.sql import func
-from app.core.database import Base
+from backend.app.core.database import Base
 from pydantic import BaseModel
 from typing import Optional, List, Dict, Any
 from datetime import datetime
