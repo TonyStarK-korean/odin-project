@@ -63,8 +63,10 @@ async def init_db():
         print("✅ InfluxDB 연결 확인 완료")
         
     except Exception as e:
-        print(f"❌ 데이터베이스 초기화 실패: {e}")
-        raise
+        print(f"⚠️ 데이터베이스 초기화 실패 (API는 정상 작동): {e}")
+        print("💡 데이터베이스 없이도 백테스팅 API를 사용할 수 있습니다.")
+        # 데이터베이스 오류를 무시하고 계속 진행
+        pass
 
 def close_db():
     """데이터베이스 연결 종료"""

@@ -369,8 +369,7 @@ def generate_test_ohlcv_data(start_date: datetime, end_date: datetime) -> pd.Dat
 @router.post("/backtest")
 async def create_backtest(
     request: BacktestRequest,
-    background_tasks: BackgroundTasks,
-    db: Session = Depends(get_db)
+    background_tasks: BackgroundTasks
 ) -> Dict[str, Any]:
     """
     백테스트 실행 요청
@@ -396,17 +395,7 @@ async def create_backtest(
         # 작업 ID 생성
         job_id = str(uuid.uuid4())
         
-        # 데이터베이스에 작업 저장
-        backtest_job = BacktestJob(
-            strategy_id=request.strategy_id,
-            start_date=request.start_date,
-            end_date=request.end_date,
-            initial_capital=request.initial_capital,
-            timeframe=request.timeframe,
-            status="PENDING"
-        )
-        db.add(backtest_job)
-        db.commit()
+        # 메모리에 작업 정보 저장 (데이터베이스 없이도 작동)
         
         # 메모리에 작업 정보 저장
         backtest_jobs[job_id] = {
@@ -441,8 +430,7 @@ async def create_backtest(
 
 @router.get("/history")
 async def get_backtest_history(
-    limit: int = 20,
-    db: Session = Depends(get_db)
+    limit: int = 20
 ) -> Dict[str, Any]:
     """
     백테스트 히스토리 조회
@@ -454,27 +442,21 @@ async def get_backtest_history(
         Dict: 백테스트 히스토리
     """
     try:
-        backtest_jobs_db = db.query(BacktestJob).order_by(
-            BacktestJob.created_at.desc()
-        ).limit(limit).all()
-        
+        # 메모리에서 백테스트 히스토리 조회 (데이터베이스 없이도 작동)
         history = []
-        for job in backtest_jobs_db:
-            # 메모리에서 최신 상태 확인
-            memory_job = next((j for j in backtest_jobs.values() if j["job_id"] == str(job.job_id)), None)
-            
-            status = memory_job["status"] if memory_job else job.status
-            
+        sorted_jobs = sorted(backtest_jobs.values(), key=lambda x: x["created_at"], reverse=True)
+        
+        for job in sorted_jobs[:limit]:
             history.append({
-                "job_id": job.job_id,
-                "created_at": job.created_at,
-                "strategy_id": job.strategy_id,
-                "start_date": job.start_date,
-                "end_date": job.end_date,
-                "initial_capital": job.initial_capital,
-                "timeframe": job.timeframe,
-                "status": status,
-                "results_summary": job.results.get("summary") if job.results else None
+                "job_id": job["job_id"],
+                "created_at": job["created_at"],
+                "strategy_id": job["strategy_id"],
+                "start_date": job["start_date"],
+                "end_date": job["end_date"],
+                "initial_capital": job["initial_capital"],
+                "timeframe": job["timeframe"],
+                "status": job["status"],
+                "results_summary": job["results"].get("summary") if job["results"] else None
             })
         
         return {
