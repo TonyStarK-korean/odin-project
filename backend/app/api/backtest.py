@@ -9,6 +9,8 @@ from typing import Dict, Any, List
 from datetime import datetime, timedelta
 import asyncio
 import uuid
+import pandas as pd
+import numpy as np
 
 from backend.app.core.database import get_db
 from backend.app.models.trade_models import (
@@ -140,9 +142,6 @@ async def run_bollinger_breakout_backtest(strategy, request: BacktestRequest) ->
     Returns:
         Dict: 백테스트 결과
     """
-    import pandas as pd
-    import numpy as np
-    from datetime import timedelta
     
     # 테스트용 OHLCV 데이터 생성 (실제로는 거래소 API에서 가져와야 함)
     ohlcv_data = generate_test_ohlcv_data(request.start_date, request.end_date)
